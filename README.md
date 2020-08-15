@@ -263,7 +263,7 @@ I was facing an error !!! A few moments later I found "https://www.slideshare.ne
 
 I used icat command to extract the ppt file. Now, I can open that.
 
-<kbd>![alt text](images/33.png)</kbd>
+<kbd>![minipic](images/33.png)</kbd>
 
 Some random ppt file :cold_sweat: But no flag !!!
 
@@ -284,8 +284,14 @@ and Gotchaa !! Final Flag `flag{TH1NK ABOUT 1T B1LL. 1F U D13D, WOULD ANY1 CARE?
 <kbd>![alt text](images/41.png)</kbd>
 
 
+## Conclusion
 
+For this CTF, I can say It was very interesting and informative for me. Neither I used AWS commands nor Zxing/Uuencoding before. But, after completing all challenges I educate my self for every flag.
 
+I hope this writeup is you also useful for you.
 
+Thank you for Reading.
 
+**Thank you.**
 
+**Husseni Muzkkir.**
