@@ -149,7 +149,7 @@ Find some interesting values.
 
 I have retrived server files content with the help of python script. Now, again I used that with some changes to find the AWS access credentials. I send request to all URls and print them on terminal. Also use grep command to find the "Access Key" string from terminal output.
 
-<kbd>![alt text](images/23.png)</kbd>
+<kbd>![alt text](images/24.png)</kbd>
 
 Bingoo !!!
 
@@ -170,7 +170,7 @@ Default region name [None]: ap-south-1
 Default output format [None]: 
 ```
 
-<kbd>![alt text](images/24.png)</kbd>
+<kbd>![alt text](images/23.png)</kbd>
 
 As we know, User has been using Serverless bucket and one of the most popular bucket is AWS Lambda.
 
