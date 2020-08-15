@@ -149,14 +149,14 @@ Find some interesting values.
 
 I have retrived server files content with the help of python script. Now, again I used that with some changes to find the AWS access credentials. I send request to all URls and print them on terminal. Also use grep command to find the "Access Key" string from terminal output.
 
-<kbd>![alt text](images/16.png)</kbd>
+<kbd>![alt text](images/23.png)</kbd>
 
 Bingoo !!!
 
 ```
 root@muzzy:~# python3 ctf.py | grep "Access Key" -A 1
-    Access Key : AKIAQIZGSICKX6Y4MANS 
-    Secret Key : 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
+    Access Key : ***************** 
+    Secret Key : ***************************
 root@muzzy:~#
 ```
 
@@ -164,13 +164,13 @@ I found the AWS Access Key and Secret Key. Now I need to configure the AWS CLI w
 
 ```
 root@muzzy:~# aws configure
-AWS Access Key ID [None]: AKIAQIZGSICKX6Y4MANS
-AWS Secret Access Key [None]: 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
+AWS Access Key ID [None]: **************
+AWS Secret Access Key [None]: ************************
 Default region name [None]: ap-south-1
 Default output format [None]: 
 ```
 
-<kbd>![alt text](images/17.png)</kbd>
+<kbd>![alt text](images/24.png)</kbd>
 
 As we know, User has been using Serverless bucket and one of the most popular bucket is AWS Lambda.
 
