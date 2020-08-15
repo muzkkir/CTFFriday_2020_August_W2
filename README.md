@@ -88,7 +88,7 @@ At this point, I search over web about the AWS url format and AWS Indian Region.
 
 For gathering more information I visited "https://docs.aws.amazon.com/general/latest/gr/rande.html" AWS's Docs.
 
-<kbd>![alt text](images/12.png)</kbd>
+<kbd>![minipic](images/12.png)</kbd>
 
 ```
 So I forged bucket URL by that,
