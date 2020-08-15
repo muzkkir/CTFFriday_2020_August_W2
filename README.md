@@ -26,7 +26,7 @@ Server transfer Unix files from one Unix system to another Unix system and we ge
 
 That challenge was brainstorming and new for me. I have not performed that in past. So, I google-searched about the file transferring and found that.
 
-<kbd>![alt text](images/1.png){:height="36px" width="36px"}</kbd>
+<kbd>![alt text](images/1.png){:height="20px" width="20px"}</kbd>
 
 
 
