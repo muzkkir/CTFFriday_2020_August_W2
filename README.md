@@ -22,7 +22,8 @@ For the fourth flag, I have one image file and it was in pptx format. So I unzip
 ```
 challenge 1
 
-Server transfer Unix files from one Unix system to another Unix system and we get this string. Can you please decode this string for me!
+Server transfer Unix files from one Unix system to another Unix system and we get this string.
+Can you please decode this string for me!
 
 9;G-C=&9[37E?1B%R<W1?8VAA;&Q ;F<S?0
 ```
@@ -55,13 +56,20 @@ nsctf{My_F!rst_chall@ng3}
 ```
 challenge 2
 
-Meena is super tech savy for her age, at just over 52 years old, she is the oldest AWS administrator in her county. But old age has its perils. One of them being the inability to grasp new knowledge as quickly as she did when she was aboard the RMS Titanic.
+Meena is super tech savy for her age, at just over 52 years old, she is the oldest AWS administrator in 
+her county. But old age has its perils. One of them being the inability to grasp new knowledge as quickly
+as she did when she was aboard the RMS Titanic.
 
-Configuration goof ups have become a weekly thing now with her. Like the domain configuration she has in place for her backup buckets. Or the server she manages. 
+Configuration goof ups have become a weekly thing now with her. Like the domain configuration she has in 
+place for her backup buckets. Or the server she manages. 
 
-I mean, look at the websitesnapshot she has made at Indian region, clearly missing out on utilizing AWS' cool features to save the website and instead ending up with a giant blob. Jack can't seem to make head nor tail of it either and does not believe this is the actual backup. He believes there has to be a proper backup somewhere in that bucket (like the Heart of the Ocean)! 
+I mean, look at the websitesnapshot she has made at Indian region, clearly missing out on utilizing AWS' 
+cool features to save the website and instead ending up with a giant blob. Jack can't seem to make head 
+nor tail of it either and does not believe this is the actual backup. He believes there has to be a proper 
+backup somewhere in that bucket (like the Heart of the Ocean)! 
 
-There is no plank of wood to save Jack this time! Can you help him find the actual backup and use the information in there to find the flag for this level please? Before he sinks again! 
+There is no plank of wood to save Jack this time! Can you help him find the actual backup and use the 
+information in there to find the flag for this level please? Before he sinks again! 
 ```
 
 This challenge was about to explor the AWS services. Now, let me list important words from this passage.
