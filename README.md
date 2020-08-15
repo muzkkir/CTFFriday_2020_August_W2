@@ -190,7 +190,7 @@ Bucket has one function named "websitebackup" which I found interesting.
 
 There are many AWS CTF challanges in which we find flag within functions. So I did learn commands from "https://docs.aws.amazon.com/cli/latest/reference/lambda/get-function-configuration.html" and get the configuration details from aws.
 
-<kbd>![alt text](images/19.png)</kbd>
+<kbd>![alt text](images/21.png)</kbd>
 
 ```
 root@muzzy:~# aws lambda get-function --function-name websitebackup
@@ -225,9 +225,12 @@ root@muzzy:~# aws lambda get-function --function-name websitebackup
 }
 ```
 
-Gochaa!!!!
+Gochaa!!!! :sunglasses:
 
-<kbd>![alt text](images/20.png)</kbd>
+```
+nsctf S3rverless_T3chnology
+```
+
 
 
 
