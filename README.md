@@ -72,13 +72,64 @@ This challenge was about to explor the AWS services. Now, let me list important 
 
 > Indian region for AWS
 
-At this point, I search over web about the AWS url format to find my bucket.
+At this point, I search over web about the AWS url format and AWS Indian Region.
 
 <kbd>![alt text](images/10.png)</kbd>
 
 <kbd>![alt text](images/11.png)</kbd>
 
+For gathering more information I visited "https://docs.aws.amazon.com/general/latest/gr/rande.html" AWS's Docs.
+
 <kbd>![alt text](images/12.png)</kbd>
+
+```
+So I forged bucket URL by that,
+
+Bucket Name + S3 + AWS Domain
+
+https://websitesnapshot.s3.amazonaws.com
+
+OR
+
+Bucket Name + S3 + AWS Asia Pacific (Mumbai) Region + AWS Domain 
+
+http://websitesnapshot.s3.ap-south-1.amazonaws.com/
+```
+
+ <kbd>![alt text](images/13.png)</kbd>
+
+I found bunch of URLs and Files. Its hard for me to manually searched all files content. So, I created small python script that work for me.
+
+```
+import re, requests
+
+with open('data.xml', 'r') as data:
+    data = data.read()
+
+urls = re.findall("<Key>(.*?)</Key>", data)
+
+for i in urls:
+    req = requests.get('http://websitesnapshot.s3.ap-south-1.amazonaws.com/'+i)
+    if len(req.text) < 70:
+        print(req.text)
+```
+
+This script will find urls from the "data.xml" file in which I saved the page content. From that, It collect all strings between "<Key>" and "</Key>". As python send request for all urls and print response which lenght is less than 70 otherwise it will print the entire pages from the website and we can not find any flags.
+
+<kbd>![alt text](images/14.png)</kbd>
+
+I received the string ```Sｏｍｅoｎe foｕｎd a ｗriteup оf ｔhіs ｃhaｌlｅｎge ａnd ｔwｅｅｔeｄ abouｔ ｉt```. So, I did not get how to decode that message. 
+
+A few minutes later surfing on the net I found "twitter secret message" encoding is used. I navigated to "https://holloway.nz/steg/" and decode this obfuscated message.
+
+That was my 2nd flag. 
+
+```nsctf w3rd_nm3_fr```
+
+<kbd>![alt text](images/15.png)</kbd>
+
+
+
 
 
 
