@@ -24,4 +24,13 @@ Server transfer Unix files from one Unix system to another Unix system and we ge
 9;G-C=&9[37E?1B%R<W1?8VAA;&Q ;F<S?0
 ```
 
+That challenge was brainstorming and new for me. I have not performed that in past. So, I google-searched about the file transferring and found that.
+
+![](./images/1.png = 250x)
+
+![alt text](images/1.png | width=200 )
+
+<kbd>![alt text](images/1.png)</kbd>
+
+
 
