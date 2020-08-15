@@ -225,12 +225,63 @@ root@muzzy:~# aws lambda get-function --function-name websitebackup
 }
 ```
 
-Gochaa!!!! :sunglasses:
+Gotchaaa!!!! :sunglasses:
 
 ```
 nsctf S3rverless_T3chnology
 ```
 
+
+## Fourth Flag
+
+```
+Challenge 4
+
+For that challenge I got "out.img" file.
+```
+
+File has "img" extension. At this moment I need to use my forensic skills for retrieving the flag.
+
+Quickly I run few commands to gather more information from that file.
+
+<kbd>![alt text](images/30.png)</kbd>
+
+That was Power Point Presentation File. So I need to convert this into ppt format. I simply try to change extension and open it.
+
+```
+root@muzzy:/tmp# cp out.img test2.ppt
+```
+<kbd>![alt text](images/31.png)</kbd>
+
+I was facing an error !!! A few moments later I found "https://www.slideshare.net/ChiaweiWang3/disk-forensics" in which he saw usage of "icat" command.
+
+> https://www.sleuthkit.org/sleuthkit/man/icat.html
+
+> https://www.ibm.com/downloads/cas/Z7PLNQ1M
+
+<kbd>![alt text](images/32.png)</kbd>
+
+I used icat command to extract the ppt file. Now, I can open that.
+
+<kbd>![alt text](images/33.png)</kbd>
+
+Some random ppt file :cold_sweat: But no flag !!!
+
+Unzipping ppt file can be useful. So I did.
+
+<kbd>![alt text](images/34.png)</kbd>
+
+Now, I can see all files. After looking to all files I found one different file.
+
+<kbd>![alt text](images/35.png)</kbd>
+
+That's look like Barcode or Zebra Crossing(ZXing) encoding. Quicky decoding that, I visit "https://zxing.org/w/decode.jspx" and upload the file and click on submit button.
+
+<kbd>![alt text](images/40.png)</kbd>
+
+and Gotchaa !! Final Flag `flag{TH1NK ABOUT 1T B1LL. 1F U D13D, WOULD ANY1 CARE??}` :relaxed:
+
+<kbd>![alt text](images/41.png)</kbd>
 
 
 
