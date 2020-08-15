@@ -74,11 +74,11 @@ This challenge was about to explor the AWS services. Now, let me list important 
 
 At this point, I search over web about the AWS url format to find my bucket.
 
-<kbd>![alt text](images/10.jpg)</kbd>
+<kbd>![alt text](images/10.png)</kbd>
 
-<kbd>![alt text](images/11.jpg)</kbd>
+<kbd>![alt text](images/11.png)</kbd>
 
-<kbd>![alt text](images/12.jpg)</kbd>
+<kbd>![alt text](images/12.png)</kbd>
 
 
 
