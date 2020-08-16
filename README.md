@@ -153,7 +153,7 @@ I have retrived server files content with the help of python script. Now, again 
 
 Bingoo !!!
 
-> As Access and Secret Key was sensitive information so, I have hide them.
+> As Access and Secret Key was sensitive information so, I have to hide them.
 
 ```
 root@muzzy:~# python3 ctf.py | grep "Access Key" -A 1
@@ -289,8 +289,6 @@ For this CTF, I can say It was very interesting and informative for me. Neither 
 
 I hope this writeup is also useful for you.
 
-Thank you for Reading.
-
-**Thank you.**
+**Thank you for Reading.**
 
 **Husseni Muzkkir.**
