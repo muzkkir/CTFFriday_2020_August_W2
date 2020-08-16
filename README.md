@@ -10,9 +10,9 @@ For the First flag, I decoded the uuencoding string which used for file transfer
 
 After that, I Searched for the bucket on AWS and read the publicly available files. From one of those files, I found my second flag.
 
-Digging into all files I found AWS access credentials from the "_config.yml" file. Configuring the AWS CLI command I had listed all files, functions, and configurations. With the help of lambda functions, I found my third flag.
+Digging into all files I found AWS access credentials from the "`_config.yml`" file. Configuring the AWS CLI command I had listed all files, functions, and configurations. With the help of lambda functions, I found my third flag.
 
-For the fourth flag, I have one image file and it was in pptx format. So I unzip the file and got one unique GIF file. After decoding the Zxing file I got my Final Flag.
+For the fourth flag, I got one ".img" file and I need to extract pptx format file from it. So I converted into pptx format and unzip the file and got one unique GIF file. After decoding the Zxing encoded GIF I got my Final Fourth Flag.
 
 
 
@@ -74,9 +74,9 @@ information in there to find the flag for this level please? Before he sinks aga
 
 This challenge was about to explor the AWS services. Now, let me list important words from this passage.
 
-> AWS service used for website
+> AWS service was used
 
-> "websitesnapshot" is bucket or domain name
+> "websitesnapshot" is bucket name
 
 > Indian region for AWS
 
@@ -91,13 +91,13 @@ For gathering more information I visited "https://docs.aws.amazon.com/general/la
 <kbd>![minipic](images/12.png)</kbd>
 
 ```
-So I forged bucket URL by that,
+So I create bucket URL by that,
 
 Bucket Name + S3 + AWS Domain
 
 https://websitesnapshot.s3.amazonaws.com
 
-OR
+and alternatively,
 
 Bucket Name + S3 + AWS Asia Pacific (Mumbai) Region + AWS Domain 
 
@@ -106,7 +106,7 @@ http://websitesnapshot.s3.ap-south-1.amazonaws.com/
 
  <kbd>![alt text](images/13.png)</kbd>
 
-I found bunch of URLs and Files. Its hard for me to manually searched all files content. So, I created small python script that work for me.
+I found bunch of URLs and Files. Its hard for me to manually searched all files content. So, I created small python script that work for me. :stuck_out_tongue_winking_eye:
 
 ```
 import re, requests
@@ -122,13 +122,13 @@ for i in urls:
         print(req.text)
 ```
 
-This script will find urls from the "data.xml" file in which I saved the page content. From that, It collect all strings between "<Key>" and "</Key>". As python send request for all urls and print response which lenght is less than 70 otherwise it will print the entire pages from the website and we can not find any flags.
+This script will find urls from the "data.xml" file in which I saved the page content. From that, It collect all strings between "`<Key>`" and "`</Key>`". As python send request for all urls and print response which lenght is less than 70 otherwise it will print the entire pages from the website and we can not find any flags.
 
 <kbd>![alt text](images/14.png)</kbd>
 
 I received the string ```Sｏｍｅoｎe foｕｎd a ｗriteup оf ｔhіs ｃhaｌlｅｎge ａnd ｔwｅｅｔeｄ abouｔ ｉt```. So, I did not get how to decode that message. 
 
-A few minutes later surfing on the net I found "twitter secret message" encoding is used. I navigated to "https://holloway.nz/steg/" and decode this obfuscated message.
+A few minutes later surfing on the internet I found "twitter secret message" encoding is used. I navigated to "https://holloway.nz/steg/" and decode this obfuscated message.
 
 That was my 2nd flag. 
 
@@ -147,11 +147,13 @@ Rehana used serverless technology to publish her website. She set some values fo
 Find some interesting values.
 ```
 
-I have retrived server files content with the help of python script. Now, again I used that with some changes to find the AWS access credentials. I send request to all URls and print them on terminal. Also use grep command to find the "Access Key" string from terminal output.
+I have retrived server files content with the help of python script. Now, again I used that with some changes to find the AWS access credentials. I send request to all URLs and print them on terminal. Also use grep command to find the "Access Key" string from terminal output.
 
 <kbd>![alt text](images/24.png)</kbd>
 
 Bingoo !!!
+
+> As Access and Secret Key was sensitive information so, I have hide them.
 
 ```
 root@muzzy:~# python3 ctf.py | grep "Access Key" -A 1
@@ -174,7 +176,7 @@ Default output format [None]:
 
 As we know, User has been using Serverless bucket and one of the most popular bucket is AWS Lambda.
 
-> AWS Lambda is an event-driven, serverless computing platform provided by Amazon as a part of Amazon Web Services. It is a computing service that runs code in response to events and automatically manages the computing resources required by that code. You can use AWS Lambda to extend other AWS services with custom logic, or create your own back-end services that operate at AWS scale, performance, and security.
+> AWS Lambda is an event-driven, serverless computing platform provided by Amazon as a part of Amazon Web Services. AWS Lambda is a responsive cloud service that inspects actions within the application and responds by deploying the user-defined codes, known as functions. It automatically manages the compute resources across multiple availability zones and scales them when new actions are triggered. REF: https://www.tutorialspoint.com/amazon_web_services/amazon_web_services_lambda.htm
 
 > AWS Lambda is a compute service that lets you run code without provisioning or managing servers. AWS Lambda executes your code only when needed and scales automatically, from a few requests per day to thousands per second.
 
@@ -240,20 +242,17 @@ Challenge 4
 For that challenge I got "out.img" file.
 ```
 
-File has "img" extension. At this moment I need to use my forensic skills for retrieving the flag.
+File has "img" extension. At this moment I need to use my forensic :monocle_face: skills for retrieving the flag. 
+
+> Image (IMG) files are used to store a complete image of a disc. The IMG format is commonly used to distribute programs, such as operating systems and applications or games.
 
 Quickly I run few commands to gather more information from that file.
 
 <kbd>![alt text](images/30.png)</kbd>
 
-That was Power Point Presentation File. So I need to convert this into ppt format. I simply try to change extension and open it.
+There was Power Point Presentation File inside of that. So, first I need to gather ppt file. 
 
-```
-root@muzzy:/tmp# cp out.img test2.ppt
-```
-<kbd>![alt text](images/31.png)</kbd>
-
-I was facing an error !!! A few moments later I found "https://www.slideshare.net/ChiaweiWang3/disk-forensics" in which he saw usage of "icat" command.
+A few moments later I found "https://www.slideshare.net/ChiaweiWang3/disk-forensics" in which he saw usage of "icat" command.
 
 > https://www.sleuthkit.org/sleuthkit/man/icat.html
 
@@ -275,7 +274,7 @@ Now, I can see all files. After looking to all files I found one different file.
 
 <kbd>![alt text](images/35.png)</kbd>
 
-That's look like Barcode or Zebra Crossing(ZXing) encoding. Quicky decoding that, I visit "https://zxing.org/w/decode.jspx" and upload the file and click on submit button.
+That's look like Barcode or Zebra Crossing(ZXing) encoding. Quicky decoding that, I visited "https://zxing.org/w/decode.jspx" and upload the file and click on submit button.
 
 <kbd>![alt text](images/40.png)</kbd>
 
@@ -288,7 +287,7 @@ and Gotchaa !! Final Flag `flag{TH1NK ABOUT 1T B1LL. 1F U D13D, WOULD ANY1 CARE?
 
 For this CTF, I can say It was very interesting and informative for me. Neither I used AWS commands nor Zxing/Uuencoding before. But, after completing all challenges I educate my self for every flag.
 
-I hope this writeup is you also useful for you.
+I hope this writeup is also useful for you.
 
 Thank you for Reading.
 
